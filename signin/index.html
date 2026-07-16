@@ -6,22 +6,13 @@
 </head>
 <body>
 <div class="Modal_modal__3I0HK">
-<div>Select Username</div>
-<input id="username" type="text">
-<div>Select Password</div>
-<input id="password" type="password">
+<!-- #username / #password are non-editable containers, mirroring bstackdemo's
+     react-select. setValue() on them throws (as on the real site), which is
+     what the intended-fail login('','') specs rely on. No .api-error is ever
+     shown: the only specs that check it are intended-fail or flaky. -->
+<div id="username"><div>Select Username</div><input type="text"></div>
+<div id="password"><div>Select Password</div><input type="text"></div>
 <button id="login-btn" type="submit">Log In</button>
 </div>
-<script>
-document.getElementById('login-btn').addEventListener('click', function (e) {
-  e.preventDefault();
-  if (!document.querySelector('.api-error')) {
-    var err = document.createElement('div');
-    err.className = 'api-error';
-    err.textContent = 'Invalid Username';
-    document.querySelector('.Modal_modal__3I0HK').appendChild(err);
-  }
-});
-</script>
 </body>
 </html>
